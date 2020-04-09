@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">My Application</string>
+    <string name="visible_view">사진보이기</string>
+</resources>
