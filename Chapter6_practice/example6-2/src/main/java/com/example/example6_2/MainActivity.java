@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.os.SystemClock;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Chronometer;
@@ -13,35 +14,26 @@ public class MainActivity extends AppCompatActivity {
     Button startBtn;
     Button resetBtn;
     Button stopBtn;
+    Long time;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        time = SystemClock.elapsedRealtime();
         chronometer = findViewById(R.id.chronometer);
         startBtn = findViewById(R.id.startBtn);
         resetBtn = findViewById(R.id.resetBtn);
         stopBtn = findViewById(R.id.stopBtn);
 
-        startBtn.setOnClickListener(new View.OnClickListener() {
+
+        chronometer.setOnChronometerTickListener(new Chronometer.OnChronometerTickListener() {
             @Override
-            public void onClick(View view) {
-                chronometer.start();
+            public void onChronometerTick(Chronometer chronometer) {
+                Log.d("realTime",String.valueOf(SystemClock.elapsedRealtime()));
             }
         });
 
-        resetBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                chronometer.setBase(SystemClock.elapsedRealtime());
-            }
-        });
 
-        stopBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                chronometer.stop();
-            }
-        });
     }
 }
