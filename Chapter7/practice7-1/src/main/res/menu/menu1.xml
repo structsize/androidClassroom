@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/itemRad"
+        android:title="빨간색" />
+    <item
+        android:id="@+id/itemGreen"
+        android:title="초록색" />
+    <item
+        android:id="@+id/itemBlue"
+        android:title="파란색" />
+    <item
+        android:id="@+id/btnChange"
+        android:title="버튼변경>>">
+        <menu>
+            <item
+                android:id="@+id/subRotate"
+                android:title="버튼 " />
+            <item
+                android:id="@+id/subSizeUp"
+                android:title="버튼 크기 증가" />
+        </menu>
+    </item>
+</menu>

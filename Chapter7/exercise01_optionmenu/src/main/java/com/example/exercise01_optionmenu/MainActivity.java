@@ -27,7 +27,10 @@ public class MainActivity extends AppCompatActivity {
 
         menuInflater.inflate(R.menu.option_menu,menu);
 
-        return super.onCreateOptionsMenu(menu);
+        menu.add(Menu.NONE, Menu.FIRST, Menu.NONE, "Java코드에서 추가한 메뉴");
+        menu.add(Menu.NONE, Menu.FIRST+1, Menu.NONE, "Java코드에서 추가한 메뉴");
+
+        return true;
     }
 
     @Override
@@ -44,6 +47,12 @@ public class MainActivity extends AppCompatActivity {
                 break;
             case R.id.subitem2:
                 textView.setText("서브메뉴2 선택됨");
+                break;
+            case Menu.FIRST:
+                textView.setText("Java코드에서 추가한 아이템1 선택");
+                break;
+            case Menu.FIRST + 1:
+                textView.setText("Java코드에서 추가한 아이템2 선택");
                 break;
         }
         return super.onOptionsItemSelected(item);
