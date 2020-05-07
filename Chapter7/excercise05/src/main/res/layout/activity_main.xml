@@ -29,12 +29,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="20sp"
-        android:text="대"/>
+        android:text="라디오버튼 대화상자"/>
     <Button
         android:id="@+id/btnDailog5"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="20sp"
-        android:text="대화상자(중립, 취소, 확인 버튼"/>
+        android:text="체크박스 대화상자"/>
 
 </LinearLayout>
