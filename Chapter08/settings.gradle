@@ -1,3 +1,4 @@
 rootProject.name='Chapter08'
 include ':app'
 include ':example01'
+include ':project8_1'
