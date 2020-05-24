@@ -1,4 +1,6 @@
 rootProject.name='Chapter08'
 include ':app'
-include ':example01'
-include ':project8_1'
+include ':practice01'
+include ':Practice02_project8_1'
+include ':practice03_rawfolder'
+include ':practice04_permission'
