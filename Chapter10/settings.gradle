@@ -1,2 +1,4 @@
 rootProject.name='Chapter10'
 include ':app'
+include ':practice10-2'
+include ':practice10-1'
