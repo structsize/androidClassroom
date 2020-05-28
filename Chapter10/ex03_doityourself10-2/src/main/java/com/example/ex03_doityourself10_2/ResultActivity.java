@@ -44,6 +44,7 @@ public class ResultActivity extends AppCompatActivity {
             ratingBars[i].setRating(voteResult[i]);
             if(voteResult[i]>first){
                 imageView.setImageResource(imageFiled[i]);
+                first = voteResult[i];
             }
         }
 
