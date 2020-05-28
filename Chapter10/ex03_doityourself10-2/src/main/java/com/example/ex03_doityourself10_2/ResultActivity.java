@@ -16,6 +16,7 @@ public class ResultActivity extends AppCompatActivity {
     int imageFiled[] = {R.drawable.kakao01, R.drawable.kakao02, R.drawable.kakao03, R.drawable.kakao04, R.drawable.kakao05, R.drawable.kakao06, R.drawable.kakao07, R.drawable.kakao08, R.drawable.kakao09};
     ImageView imageView;
     int first = 0;
+    TextView textView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,6 +24,7 @@ public class ResultActivity extends AppCompatActivity {
         setContentView(R.layout.activity_result);
         btnResult = findViewById(R.id.btnResult);
         imageView = findViewById(R.id.image);
+        textView = findViewById(R.id.textView);
 
         //region
         Intent intent = getIntent();
@@ -44,6 +46,7 @@ public class ResultActivity extends AppCompatActivity {
             ratingBars[i].setRating(voteResult[i]);
             if(voteResult[i]>first){
                 imageView.setImageResource(imageFiled[i]);
+                textView.setText(imageNames[i]);
                 first = voteResult[i];
             }
         }
