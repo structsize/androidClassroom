@@ -27,16 +27,12 @@ public class MainActivity extends AppCompatActivity {
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                try{
                    n1 = Integer.parseInt(num1.getText().toString());
                    n2 = Integer.parseInt(num2.getText().toString());
                    Intent intent = new Intent(getApplicationContext(), SecondActivity.class);
                    intent.putExtra("n1",n1);
                    intent.putExtra("n2", n2);
                    startActivityForResult(intent,0);
-                }catch (Exception e){
-                    e.printStackTrace();
-                }
             }
         });
 
