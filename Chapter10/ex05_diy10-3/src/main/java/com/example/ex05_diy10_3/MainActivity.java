@@ -16,7 +16,6 @@ public class MainActivity extends AppCompatActivity {
     EditText num1, num2;
     Button btn;
     int n1, n2;
-    int flag = 0;
     RadioButton hap, cha, gob, mok;
 
 
