@@ -1,5 +1,6 @@
 package com.example.ex03_listview_addmodifydelete;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -73,27 +74,35 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(View v) {
+        final int index = listView.getCheckedItemPosition();          //리스트뷰에서 체크된 아이템의 index 가져오기
         switch (v.getId()){
             case R.id.btn_add:
                 int count = adapter.getCount();                 //어댑터에 연결된 아이템의 개수 저장
                 dataList.add("리스트 데이터"+(++count));         //ArrayList에 데이터 추가
-                adapter.notifyDataSetChanged();                 //수정된 상태를 반영함
                 break;
             case R.id.btn_modify:
-                EditText editText = new EditText(getApplicationContext());
-                int index = listView.getCheckedItemPosition();          //리스트뷰에서 체크된 아이템의 index 가져오기
+                final EditText editText = new EditText(getApplicationContext());
+
                 new AlertDialog.Builder(MainActivity.this)
                         .setTitle("리스트 아이템 수정")
                         .setMessage("현재 데이터 : " + dataList.get(index))
                         .setIcon(R.mipmap.ic_launcher)
                         .setCancelable(false)
                         .setView(editText)
-                        .setPositiveButton("수정",null)
+                        .setPositiveButton("수정", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                dataList.set(index, editText.getText().toString());
+                            }
+                        })
                         .setNegativeButton("취소",null)
                         .show();
                 break;
             case R.id.btn_delete:
+                dataList.remove(index);
                 break;
         }
+        adapter.notifyDataSetChanged();         //수정된 상태를 반영함
+        listView.clearChoices();                //체크박스 체크 상태 초기화
     }
 }
