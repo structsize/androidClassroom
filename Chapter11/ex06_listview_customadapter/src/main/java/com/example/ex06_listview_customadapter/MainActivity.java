@@ -3,9 +3,12 @@ package com.example.ex06_listview_customadapter;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -14,62 +17,54 @@ import java.util.HashMap;
 
 public class MainActivity extends AppCompatActivity {
 
-    TextView textView;
+    EditText editText;
+    Button btnAdd;
     ListView listView;
-
-    //리스트뷰에 표시할 데이터
-
-    ArrayList<String> titleData = getStringListForListView("title", 9);
-    ArrayList<String> contentsData = getStringListForListView("contents", 9);
-
+    ArrayList<String> dataList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        textView = findViewById(R.id.textView);
+        editText = findViewById(R.id.editText);
+        btnAdd = findViewById(R.id.btnAdd);
         listView = findViewById(R.id.listView);
 
-        //Simple Adapter 에 연결한 리스트 생성
-        ArrayList<HashMap<String, Object>> arrayList = new ArrayList<>();
+        //리스트뷰에 출력할 초기 데이터 생성
+        dataList = getDataArrayList(5);
 
-        for(int i = 0; i < titleData.size(); i++){
-            HashMap<String,Object> hashMap = new HashMap<>();
-
-            hashMap.put("title", titleData.get(i));
-            hashMap.put("contents",contentsData.get(i));
-
-            arrayList.add(hashMap);
-        }
-
-
-
-        //Simple Adapter 객체 생성
-        SimpleAdapter adapter = new SimpleAdapter(this, arrayList, R.layout.row, new String[]{"img","title","contents"},new int[]{});
-
-
-        listView.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
+        //커스텀 어댑터 생성
+        final CustomAdapter adapter = new CustomAdapter(this, R.layout.row,dataList);
 
         //리스트뷰에 어댑터 연결
         listView.setAdapter(adapter);
 
-        //리스트뷰의 특정항목 클릭시 발생하는 이벤트 처리
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        //추가버튼 클릭 이벤트 설정
+        btnAdd.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                // 화면의 TextView에 선택된 항목의 데이터 출력하기
-                textView.setText(titleData.get(position)+", " +contentsData.get(position) );
+            public void onClick(View v) {
+                // 빈 문자열인지 체크
+                if(editText.getText().toString().equals("")){
+                    Toast.makeText(getApplicationContext(),"빈 문자열입니다!",Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                //아니라면 추가
+                dataList.add(editText.getText().toString());
+                adapter.notifyDataSetChanged();
+
             }
         });
     }
 
-    // 리스트뷰에 들어가는 리스트 데이터 생성
-    private ArrayList<String> getStringListForListView(String str, int count) {
-        ArrayList<String> list = new ArrayList<>();
+
+    private ArrayList<String> getDataArrayList(int count) {
+        ArrayList<String> arrayList = new ArrayList<>();
         for(int i = 0 ; i < count; i++){
-            list.add(str + (i+1));
+            arrayList.add("리스트 아이템 " + (i+1));
         }
-        return list;
+        return arrayList;
     }
 }
+
+
