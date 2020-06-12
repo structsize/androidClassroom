@@ -4,6 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:gravity="center_vertical"
+    android:padding="5dp"
     android:orientation="horizontal">
 
     <TextView
@@ -15,14 +16,16 @@
         android:textSize="20dp"/>
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/btnModify"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Button1" />
+        android:text="수정"
+        android:textSize="18dp"/>
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/btnDelete"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Button2" />
+        android:text="삭제"
+        android:textSize="18dp"/>
 </LinearLayout>
