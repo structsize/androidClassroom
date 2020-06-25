@@ -35,10 +35,63 @@ public class MainActivity extends AppCompatActivity {
         //endregion
 
         //region 2. Thread 클래스를 상속한 클래스의 인스턴스를 이용한 처리
+//        btnThread.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                ProgressThread pt1 = new ProgressThread(pb1,2);
+//                pt1.start();
+//                ProgressThread pt2 = new ProgressThread(pb2,1);
+//                pt2.start();
+//            }
+//        });
+        //endregion
+
+        //region 3. 익명의 Thread 객체 구현을 이용한 처리
+//        btnThread.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                new Thread(){
+//                    @Override
+//                    public void run() {
+//                        for(int i = pb1.getProgress(); i < 100; i++){
+//                            pb1.setProgress(pb1.getProgress()+2);
+//                        }
+//                    }
+//                }.start();
+//                new Thread(){
+//                    @Override
+//                    public void run() {
+//                        for(int i = pb2.getProgress(); i < 100; i++){
+//                            pb2.setProgress(pb2.getProgress()+2);
+//                        }
+//                    }
+//                }.start();
+//            }
+//        });
+        //endregion
+
+        //region 4. Runnable 인터페이스 구현을 이용한 처리
         btnThread.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ProgressThread pt1 = new ProgressThread();
+                new Runnable(){
+                    @Override
+                    public void run() {
+                        for(int i = pb1.getProgress(); i < 100; i++){
+                            pb1.setProgress(pb1.getProgress()+2);
+                            SystemClock.sleep(100);
+                        }
+                    }
+                }.run();
+                new Runnable(){
+                    @Override
+                    public void run() {
+                        for(int i = pb2.getProgress(); i < 100; i++){
+                            pb2.setProgress(pb2.getProgress()+1);
+                            SystemClock.sleep(100);
+                        }
+                    }
+                }.run();
             }
         });
     }
@@ -53,7 +106,10 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         public void run() {
-
+            for(int i = pb.getProgress(); i < 100; i++){
+                pb.setProgress(pb.getProgress()+increaseValue);
+                SystemClock.sleep(100);
+            }
         }
     }
 }
