@@ -94,22 +94,24 @@ public class MainActivity extends AppCompatActivity {
                 }.run();
             }
         });
-    }
-    private class ProgressThread extends Thread{
-        ProgressBar pb;
-        int increaseValue;
+        //endregion
 
-        public ProgressThread(ProgressBar pb, int increaseValue){
-            this.pb = pb;
-            this.increaseValue = increaseValue;
-        }
-
-        @Override
-        public void run() {
-            for(int i = pb.getProgress(); i < 100; i++){
-                pb.setProgress(pb.getProgress()+increaseValue);
-                SystemClock.sleep(100);
-            }
-        }
     }
+//    private class ProgressThread extends Thread{
+//        ProgressBar pb;
+//        int increaseValue;
+//
+//        public ProgressThread(ProgressBar pb, int increaseValue){
+//            this.pb = pb;
+//            this.increaseValue = increaseValue;
+//        }
+//
+//        @Override
+//        public void run() {
+//            for(int i = pb.getProgress(); i < 100; i++){
+//                pb.setProgress(pb.getProgress()+increaseValue);
+//                SystemClock.sleep(100);
+//            }
+//        }
+//    }
 }
